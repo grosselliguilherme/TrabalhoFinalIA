@@ -1,0 +1,10 @@
+ollama
+chromadb
+langchain
+langchain-community
+langchain-chroma
+langchain-ollama
+mcp
+fastmcp
+pypdf
+requests
