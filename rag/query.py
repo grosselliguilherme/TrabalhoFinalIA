@@ -1,13 +1,12 @@
+# arquivo para testes de RAG
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 from ollama import chat
 
 DB_DIR = "vector_db"
 
-# Mesmo modelo usado na indexação
-embeddings = OllamaEmbeddings(
-    model="nomic-embed-text"
-)
+# modelo usado na indexação
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
 # Abre a base vetorial já criada
 db = Chroma(

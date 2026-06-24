@@ -1,27 +1,26 @@
 from ollama import chat
-
+from config import CHAT_MODEL
 
 class Planner:
-
     def classify(self, user_input):
 
         prompt = f"""
-Você é um classificador.
+        Você é um classificador.
 
-Classifique a solicitação abaixo.
+        Classifique a solicitação abaixo.
 
-Responda SOMENTE com uma palavra:
+        Responda SOMENTE com uma palavra:
 
-pergunta
-ou
-resumo
+        pergunta
+        ou
+        resumo
 
-Solicitação:
-{user_input}
-"""
+        Solicitação:
+        {user_input}
+        """
 
         response = chat(
-            model="llama3.2",
+            model=CHAT_MODEL,
             messages=[
                 {
                     "role": "user",

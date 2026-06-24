@@ -2,9 +2,22 @@ from pathlib import Path
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 from fastmcp import FastMCP
+from config import (
+    EMBED_MODEL,
+    DB_DIR,
+    TOP_K
+)
 
 mcp = FastMCP("Guia de Estudos Acadêmicos")
 
+embeddings = OllamaEmbeddings(
+    model=EMBED_MODEL
+)
+
+db = Chroma(
+    persist_directory=DB_DIR,
+    embedding_function=embeddings
+)
 
 @mcp.tool()
 def listar_disciplinas():
@@ -14,27 +27,17 @@ def listar_disciplinas():
         "Algoritmos"
     ]
 
-
 @mcp.tool()
 def buscar_conteudo(pergunta: str):
-
-    db = Chroma(
-        persist_directory="vector_db",
-        embedding_function=OllamaEmbeddings(
-            model="nomic-embed-text"
-        )
-    )
-
     docs = db.similarity_search(
         pergunta,
-        k=3
+        k=TOP_K
     )
 
     return [
         doc.page_content
         for doc in docs
     ]
-
 
 if __name__ == "__main__":
     mcp.run()

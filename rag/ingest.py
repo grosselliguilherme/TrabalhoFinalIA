@@ -1,22 +1,19 @@
 from pathlib import Path
-
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
-
+from config import (
+    EMBED_MODEL,
+    DB_DIR
+)
 
 BASE_DIR = Path("base_dados")
-DB_DIR = "vector_db"
-
 
 documents = []
 
 for file in BASE_DIR.rglob("*.md"):
-    content = file.read_text(
-        encoding="utf-8"
-    )
+    content = file.read_text(encoding="utf-8")
 
     documents.append(
         Document(
@@ -33,13 +30,9 @@ splitter = RecursiveCharacterTextSplitter(
     chunk_overlap=50
 )
 
-chunks = splitter.split_documents(
-    documents
-)
+chunks = splitter.split_documents(documents)
 
-embeddings = OllamaEmbeddings(
-    model="nomic-embed-text"
-)
+embeddings = OllamaEmbeddings(model=EMBED_MODEL)
 
 db = Chroma.from_documents(
     documents=chunks,

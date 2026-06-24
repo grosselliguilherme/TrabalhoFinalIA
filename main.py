@@ -1,30 +1,31 @@
 from agents.orchestrator import Orchestrator
 
-
 def main():
 
     orchestrator = Orchestrator()
 
-    print("=" * 40)
-    print("\tGuia de Estudos Acadêmicos")
-    print("=" * 40)
+    print("\n" + "=" * 45)
+    print("      GAE - Guia de Estudos Acadêmicos")
+    print("\n     Assistente Inteligente para Estudos\n")
+    print("=" * 45)
+
+    print("Exemplos de comandos:")
+    print("- \"O que é TCP?\" ou \"Resuma TCP\".")
+
+    print("\nDigite 'sair' para encerrar o assistente.\n")
 
     while True:
-
-        print("\nDigite sua pergunta.")
-        print("Digite 'sair' para encerrar.\n")
-
-        user_input = input("> ")
+        user_input = input("\nO que você deseja? > ")
 
         if user_input.lower() == "sair":
             print("\nEncerrando...")
             break
 
-        response = orchestrator.process(
-            user_input
-        )
+        response = orchestrator.process(user_input)
 
-        print("\nResposta:\n")
+        print("\n" + "-" * 30)
+        print("Resposta")
+        print("-" * 30 + "\n")
         print(response)
         print()
 
