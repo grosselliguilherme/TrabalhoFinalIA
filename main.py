@@ -10,7 +10,11 @@ def main():
     print("=" * 45)
 
     print("Exemplos de comandos:")
-    print("- \"O que é TCP?\" ou \"Resuma TCP\".")
+    print("- \"O que é TCP?\" ou \"Resuma Redes Neurais Artificiais\".")
+    print("Disciplinas disponíveis:")
+    print("- Inteligência Artificial")
+    print("- Redes")
+    print("- Sistemas Operacionais")
 
     print("\nDigite 'sair' para encerrar o assistente.\n")
 
@@ -23,9 +27,6 @@ def main():
 
         response = orchestrator.process(user_input)
 
-        print("\n" + "-" * 30)
-        print("Resposta")
-        print("-" * 30 + "\n")
         print(response)
         print()
 

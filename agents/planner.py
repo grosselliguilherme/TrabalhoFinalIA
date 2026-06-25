@@ -2,40 +2,21 @@ from ollama import chat
 from config import CHAT_MODEL
 
 class Planner:
+
     def classify(self, user_input):
 
-        prompt = f"""
-        Você é um classificador.
+        texto = user_input.lower()
 
-        Classifique a solicitação abaixo.
+        palavras_resumo = [
+            "resuma",
+            "resumo",
+            "resumir",
+            "faça um resumo",
+            "gerar resumo"
+        ]
 
-        Responda SOMENTE com uma palavra:
-
-        pergunta
-        ou
-        resumo
-
-        Solicitação:
-        {user_input}
-        """
-
-        response = chat(
-            model=CHAT_MODEL,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
-
-        result = (
-            response["message"]["content"]
-            .strip()
-            .lower()
-        )
-
-        if "resumo" in result:
-            return "resumo"
+        for palavra in palavras_resumo:
+            if palavra in texto:
+                return "resumo"
 
         return "pergunta"

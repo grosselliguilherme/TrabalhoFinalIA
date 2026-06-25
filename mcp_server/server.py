@@ -10,9 +10,7 @@ from config import (
 
 mcp = FastMCP("Guia de Estudos Acadêmicos")
 
-embeddings = OllamaEmbeddings(
-    model=EMBED_MODEL
-)
+embeddings = OllamaEmbeddings(model=EMBED_MODEL)
 
 db = Chroma(
     persist_directory=DB_DIR,
@@ -21,14 +19,20 @@ db = Chroma(
 
 @mcp.tool()
 def listar_disciplinas():
-    return [
-        "Redes",
-        "Inteligência Artificial",
-        "Algoritmos"
+
+    pasta_base = Path("base_dados")
+
+    disciplinas = [
+        pasta.name
+        for pasta in pasta_base.iterdir()
+        if pasta.is_dir()
     ]
+
+    return sorted(disciplinas)
 
 @mcp.tool()
 def buscar_conteudo(pergunta: str):
+
     docs = db.similarity_search(
         pergunta,
         k=TOP_K
@@ -38,6 +42,7 @@ def buscar_conteudo(pergunta: str):
         doc.page_content
         for doc in docs
     ]
+
 
 if __name__ == "__main__":
     mcp.run()

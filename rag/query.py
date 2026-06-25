@@ -2,11 +2,22 @@
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 from ollama import chat
+from pathlib import Path
+import sys
 
-DB_DIR = "vector_db"
+sys.path.append(
+    str(Path(__file__).resolve().parent.parent)
+)
+
+from config import (
+    CHAT_MODEL,
+    EMBED_MODEL,
+    DB_DIR,
+    TOP_K
+)
 
 # modelo usado na indexação
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+embeddings = OllamaEmbeddings(model=EMBED_MODEL)
 
 # Abre a base vetorial já criada
 db = Chroma(
@@ -19,7 +30,7 @@ pergunta = input("Pergunta: ")
 # Busca os 3 documentos mais relevantes
 docs = db.similarity_search(
     pergunta,
-    k=3
+    k=TOP_K
 )
 
 contexto = "\n\n".join(
@@ -42,7 +53,7 @@ Resposta:
 """
 
 resposta = chat(
-    model="llama3.2",
+    model=CHAT_MODEL,
     messages=[
         {
             "role": "user",

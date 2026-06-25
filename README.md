@@ -1,10 +1,8 @@
-# GAE - Guia de Estudos Acadêmicos
+# GEA - Guia de Estudos Acadêmicos
 
 ## Descrição
 
-O GAE - Guia de Estudos Acadêmicos é um assistente de estudos desenvolvido em linguagem Python para auxiliar estudantes universitários dos cursos de Ciência da Computação na consulta e revisão de conteúdos acadêmicos das disciplinas.
-
-O sistema utiliza uma arquitetura multiagente composta por Planejador, Pesquisador e Executor/Revisor, integrada a um mecanismo RAG (Retrieval-Augmented Generation) com ChromaDB e modelo local executado através do Ollama.
+O GEA - Guia de Estudos Acadêmicos é um assistente de estudos desenvolvido em linguagem Python, versão 3.14, para auxiliar estudantes universitários dos cursos de Ciência da Computação na consulta e revisão de conteúdos acadêmicos das disciplinas. O sistema utiliza uma arquitetura multiagente composta por Planejador, Pesquisador e Executor/Revisor, integrada a um mecanismo RAG (Retrieval-Augmented Generation) com ChromaDB e modelo local executado através do Ollama, versão 3.2. Seu funcionamento ocorre via terminal.
 
 ## Arquitetura
 
@@ -46,22 +44,58 @@ mcp_server/
 
 base_dados/
 
-* materiais de estudo
+* materiais de estudo, sobre os temas Redes de Computadores, Inteligência Artificial e Sistemas Operacionais.
 
 vector_db/
 
 * base vetorial gerada pelo ChromaDB
 
 
-## Execução
+## Execução (Windows,Linux e macOS)
+
+Após abrir o diretório onde estão salvos os arquivos pelo terminal:
+
+Instalar os seguintes comandos Ollama na sua máquina:
+```bash
+ollama pull llama3.2
+ollama pull nomic-embed-text
+```
 
 Instalar dependências:
 
+```bash
 pip install -r requirements.txt
+```
+ou em alguns modelos Linux:
+```bash
+pip3 install -r requirements.txt
+```
 
 Executar:
 
+```bash
 python main.py
+```
+
+ou em alguns modelos Linux:
+```bash
+python3 main.py
+```
+
+## Reindexação da Base (Opcional)
+
+A pasta vector_db já acompanha o projeto.
+Não é necessário executar rag/ingest.py para utilizar o sistema.
+A reindexação só é necessária caso os arquivos da pasta base_dados sejam modificados ou novos materiais sejam adicionados
+
+```bash
+python rag/ingest.py
+```
+
+ou em alguns modelos Linux:
+```bash
+python3 rag/ingest.py
+```
 
 ## Funcionalidades
 
