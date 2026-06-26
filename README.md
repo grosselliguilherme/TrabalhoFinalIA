@@ -1,5 +1,7 @@
 # GEA - Guia de Estudos Acadêmicos
 
+Trabalho final da disiciplina desenvolvido pelo aluno Guilherme Grosselli, matricula 199442, para a disciplina de Inteligência Artificial do Curso de Ciência da Computação - UPF.
+
 ## Descrição
 
 O GEA - Guia de Estudos Acadêmicos é um assistente de estudos desenvolvido em linguagem Python, versão 3.14, para auxiliar estudantes universitários dos cursos de Ciência da Computação na consulta e revisão de conteúdos acadêmicos das disciplinas. O sistema utiliza uma arquitetura multiagente composta por Planejador, Pesquisador e Executor/Revisor, integrada a um mecanismo RAG (Retrieval-Augmented Generation) com ChromaDB e modelo local executado através do Ollama, versão 3.2. Seu funcionamento ocorre via terminal.
